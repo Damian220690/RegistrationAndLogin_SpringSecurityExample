@@ -1,6 +1,8 @@
 package com.dn.spring_security_example.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity
@@ -8,6 +10,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull
+    @Size
     private String firstName;
     private String lastName;
     private String email;
