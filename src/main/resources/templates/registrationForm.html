@@ -16,6 +16,10 @@
                         You've successfully registered!!!
                     </div>
                 </div>
+                <div th:if="${email}">
+                    <div class="alert alert-danger" th:text="${email}">
+                    </div>
+                </div>
                 <h1>Registration</h1>
                 <form th:action="@{/registration}" th:object="${user}" method="post">
                     <div class="form-group"
@@ -25,7 +29,8 @@
                                class="form-control"
                                th:field="*{firstName}"/>
                         <p class="error-message"
-                           th:if="${#fields.hasErrors('firstName')}" th:text="#{}">Validation error</p>
+                           th:each="error: ${#fields.errors('firstName')}"
+                           th:text="${error}">Validation error</p>
                     </div>
                     <div class="form-group"
                          th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
@@ -34,7 +39,8 @@
                                class="form-control"
                                th:field="*{lastName}"/>
                         <p class="error-message"
-                           th:if="${#fields.hasErrors('lastName')}" th:text="#{}">Validation error</p>
+                           th:each="error : ${#fields.errors('lastName')}"
+                           th:text="${error}">Validation error</p>
                     </div>
                     <div class="form-group"
                          th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
@@ -43,7 +49,8 @@
                                class="form-control"
                                th:field="*{email}"/>
                         <p class="error-message"
-                           th:if="${#fields.hasErrors('email')}" th:text="#{}">Validation error</p>
+                           th:each="error : ${#fields.errors('email')}"
+                           th:text="${error}">Validation error</p>
                     </div>
                     <div class="form-group"
                          th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
@@ -52,7 +59,8 @@
                                class="form-control"
                                th:field="*{confirmEmail}"/>
                         <p class="error-message"
-                           th:if="${#fields.hasErrors('confirmEmail')}" th:text="#{}">Validation error</p>
+                           th:each="error : ${#fields.errors('confirmEmail')}"
+                           th:text="${error}">Validation error</p>
                     </div>
                     <div class="form-group"
                          th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
@@ -62,7 +70,8 @@
                                type="password"
                                th:field="*{password}"/>
                         <p class="error-message"
-                           th:if="${#fields.hasErrors('password')}" th:text="#{}">Validation error</p>
+                           th:each="error : ${#fields.errors('password')}"
+                           th:text="${error}">Validation error</p>
                     </div>
                     <div class="form-group"
                          th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
@@ -72,7 +81,8 @@
                                type="password"
                                th:field="*{confirmPassword}"/>
                         <p class="error-message"
-                           th:if="${#fields.hasErrors('confirmPassword')}" th:text="#{}">Validation error</p>
+                           th:each="error : ${#fields.errors('confirmPassword')}"
+                           th:text="${error}">Validation error</p>
                     </div>
                     <div class="form-group"
                          th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
@@ -83,7 +93,8 @@
                             I agree with the <a href="#">terms and conditions</a> for Registration.
                         </label>
                         <p class="error-message"
-                           th:if="${#fields.hasErrors('terms')}" th:text="#{}">Validation error</p>
+                           th:each="error : ${#fields.errors('terms')}"
+                           th:text="${error}">Validation error</p>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Register</button>
